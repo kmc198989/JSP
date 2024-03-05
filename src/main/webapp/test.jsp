@@ -11,6 +11,11 @@
 <<<<<<< HEAD
 올라가는지김민철13:49
 
+<<<<<<< HEAD
+=======
+어쩌라고
+으아아아아아아
+>>>>>>> branch 'main' of https://github.com/kmc198989/JSP.git
 
 
 
