@@ -10,6 +10,5 @@
 <<<<<<< HEAD
 올라가는지김민철13:38
 
->>>>>>> branch 'main' of https://github.com/kmc198989/JSP.git
 </body>
 </html>
