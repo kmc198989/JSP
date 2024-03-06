@@ -1,5 +1,5 @@
 package main.com.daewoo.dto;
-
+//안녕하세요
 public class CommunityDTO {
      private String c_post; //게시글 
      private int c_post_num; // 게시글 번호 
