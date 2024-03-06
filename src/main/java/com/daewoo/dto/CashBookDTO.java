@@ -1,4 +1,4 @@
-package com.daewoo.dto;
+package main.java.com.daewoo.dto;
 
 
 public class CashBookDTO {
