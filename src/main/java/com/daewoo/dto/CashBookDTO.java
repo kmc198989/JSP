@@ -9,6 +9,7 @@ public class CashBookDTO {
 	private String payment; //결제 수단
 	private String monthly; //고정 수입/ 지출 여부
 	
+	
 	public int getCode() {
 		return code;
 	}
