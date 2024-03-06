@@ -1,13 +1,13 @@
 package com.daewoo.dto;
 
 public class CashBookDTO {
-	private int code;
-	private String in_out;
-	private int amount;
-	private int in_date;
-	private String content;
-	private String payment;
-	private String monthly;
+	private int code; //수입/지출
+	private String in_out; //수입/지출
+	private int amount; //금액
+	private int in_date; //입력일자
+	private String content; //내용
+	private String payment; //결제 수단
+	private String monthly; //고정 수입/ 지출 여부
 	
 	public int getCode() {
 		return code;
