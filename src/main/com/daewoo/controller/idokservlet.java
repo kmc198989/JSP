@@ -1,4 +1,4 @@
-package com.daewoo.controller;
+package main.com.daewoo.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.daewoo.dao.JoinDAO;
+import main.com.daewoo.dao.JoinDAO;
 
 /**
  * Servlet implementation class idokservlet

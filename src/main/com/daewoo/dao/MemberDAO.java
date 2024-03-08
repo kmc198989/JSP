@@ -1,4 +1,4 @@
-package com.daewoo.dao;
+package main.com.daewoo.dao;
 
 
 
@@ -7,7 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import utill.DBManager;
+import util.DBManager;
+
 
 
 public class MemberDAO {

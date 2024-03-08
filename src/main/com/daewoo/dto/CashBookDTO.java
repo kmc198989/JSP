@@ -5,18 +5,11 @@ public class CashBookDTO {
 	private int code; //수입/지출
 	private String in_out; //수입/지출
 	private int amount; //금액
-	private int in_date; //입력일자
+	private String in_date; //입력일자
 	private String content; //내용
 	private String payment; //결제 수단
 	private String monthly; //고정 수입/ 지출 여부
 	private String coment; // 댓글
-	
-	public String getcoment() {
-		return coment;
-	}
-	public void setComent(String coment) {
-		this.coment = coment;
-	}
 	public int getCode() {
 		return code;
 	}
@@ -35,10 +28,10 @@ public class CashBookDTO {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public int getIn_date() {
+	public String getIn_date() {
 		return in_date;
 	}
-	public void setIn_date(int in_date) {
+	public void setIn_date(String in_date) {
 		this.in_date = in_date;
 	}
 	public String getContent() {
@@ -59,13 +52,16 @@ public class CashBookDTO {
 	public void setMonthly(String monthly) {
 		this.monthly = monthly;
 	}
-	
+	public String getComent() {
+		return coment;
+	}
+	public void setComent(String coment) {
+		this.coment = coment;
+	}
 	@Override
 	public String toString() {
 		return "CashBookDTO [code=" + code + ", in_out=" + in_out + ", amount=" + amount + ", in_date=" + in_date
-				+ ", content=" + content + ", payment=" + payment + ", monthly=" + monthly + ", coment=" + coment
-				+ "]";
+				+ ", content=" + content + ", payment=" + payment + ", monthly=" + monthly + ", coment=" + coment + "]";
 	}
-	
 	
 }

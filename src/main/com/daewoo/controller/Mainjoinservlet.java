@@ -1,4 +1,4 @@
-package com.daewoo.controller;
+package main.com.daewoo.controller;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.daewoo.dao.JoinDAO;
-import com.daewoo.dto.MemberDTO;
+import main.com.daewoo.dao.JoinDAO;
+import main.com.daewoo.dto.MemberDTO;
 
 /**
  * Servlet implementation class Mainjoinservlet

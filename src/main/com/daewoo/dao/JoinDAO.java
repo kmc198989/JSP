@@ -1,5 +1,5 @@
 
-package com.daewoo.dao;
+package main.com.daewoo.dao;
 //회원 가입 DAO
 
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.daewoo.dto.MemberDTO;
+import main.com.daewoo.dto.MemberDTO;
 
 
 public class JoinDAO {

@@ -36,7 +36,7 @@ public class CashBookDAO {
 				cdto.setCode(code);
 				cdto.setIn_out(rs.getString("in_out"));
 				cdto.setAmount(rs.getInt("amount"));
-			    cdto.setIn_date(rs.getInt("in_date"));
+			    cdto.setIn_date(rs.getString("in_date"));
 			    cdto.setContent(rs.getString("content"));
 			    cdto.setPayment(rs.getString("payment"));
 			    cdto.setMonthly(rs.getString("monthly"));
@@ -70,9 +70,11 @@ public class CashBookDAO {
 				if (rs.getString("in_out").equals("수입")) {
 					mdto.setTitle(rs.getString("in_out") + " +" + rs.getString("title"));
 					mdto.setStart(rs.getString("start"));
+					mdto.setColor("#80CEE1");
 				} else {
 					mdto.setTitle(rs.getString("in_out") + " -" + rs.getString("title"));
 					mdto.setStart(rs.getString("start"));
+					mdto.setColor("#FF968A");
 				}
 			    al.add(mdto);
 			}
@@ -83,6 +85,30 @@ public class CashBookDAO {
 		}
 		
 		return al;		
+	}
+	
+	public int ListAdd(CashBookDTO cdto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into cashbook name(code, in_out, in_date, amount, content, payment) values(?,?,?,?,?,?)";
+		int result = -1;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cdto.getCode());
+			pstmt.setString(2, cdto.getIn_out());
+			pstmt.setString(3, cdto.getIn_date());
+			pstmt.setInt(4, cdto.getAmount());
+			pstmt.setString(5, cdto.getContent());
+			pstmt.setString(6, cdto.getPayment());
+			result = pstmt.executeUpdate();			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+		return result;
 	}
 	
 	
