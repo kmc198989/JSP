@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect("cashbook.do"); %>
+<% response.sendRedirect("cashBook2.jsp"); %>
 </body>
 </html>

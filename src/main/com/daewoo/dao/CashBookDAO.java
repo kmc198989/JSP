@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import main.com.daewoo.dto.CashBookDTO;
+import main.com.daewoo.dto.MyDTO;
 import util.DBManager;
 
 public class CashBookDAO {
@@ -49,13 +50,40 @@ public class CashBookDAO {
 			DBManager.close(conn, pstmt, rs);
 		}
 		
-		return al;
-		
-		
-		
-		
+		return al;		
 	}
 	
+	public ArrayList<MyDTO> searchJsonList(int code) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT in_out, amount as \"title\", TO_CHAR(in_date, 'YYYY-MM-DD') AS \"start\" FROM cashbook WHERE code = ?";
+		ArrayList<MyDTO> al = new ArrayList<MyDTO>();
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MyDTO mdto = new MyDTO();
+				if (rs.getString("in_out").equals("수입")) {
+					mdto.setTitle(rs.getString("in_out") + " +" + rs.getString("title"));
+					mdto.setStart(rs.getString("start"));
+				} else {
+					mdto.setTitle(rs.getString("in_out") + " -" + rs.getString("title"));
+					mdto.setStart(rs.getString("start"));
+				}
+			    al.add(mdto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		
+		return al;		
+	}
 	
 	
 	
