@@ -29,6 +29,18 @@
     	  calendar.render();
     	});
     </script>
+    
+    <script>
+<% 
+String message = (String)request.getAttribute("message");
+String success = (String)request.getAttribute("success");
+if (message != null) { %>
+    alert("<%= message %>");
+<% } else if (success != null) { %>
+    alert("<%= success %>");
+<% } %>
+</script> 
+    
 <title>Insert title here</title>
 <style type="text/css">
     body {
@@ -174,7 +186,7 @@ table{
             <button type="submit" class="btn btn-login">로그인</button>
         </form>
         <div class="signup-link">
-            <button onclick="location.href='signup.jsp'">회원가입</button> 
+            <button onclick="location.href='mainjoin.do'">회원가입</button> 
             <button onclick="location.href='mypage.jsp'">마이페이지</button>  
             <button onclick="location.href='#'">관리자</button>
         </div>
@@ -223,7 +235,7 @@ table{
 
 <tr>
 	<td>내 용</td>
-	<td><input type="text" name="content" "></td>
+	<td><input type="text" name="content" ></td>
 </tr>
 
 <tr>
