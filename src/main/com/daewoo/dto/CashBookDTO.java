@@ -1,4 +1,4 @@
-package main.java.com.daewoo.dto;
+package main.com.daewoo.dto;
 
 
 public class CashBookDTO {
@@ -9,8 +9,14 @@ public class CashBookDTO {
 	private String content; //내용
 	private String payment; //결제 수단
 	private String monthly; //고정 수입/ 지출 여부
+	private String coment; // 댓글
 	
-	
+	public String getcoment() {
+		return coment;
+	}
+	public void setComent(String coment) {
+		this.coment = coment;
+	}
 	public int getCode() {
 		return code;
 	}
@@ -57,7 +63,8 @@ public class CashBookDTO {
 	@Override
 	public String toString() {
 		return "CashBookDTO [code=" + code + ", in_out=" + in_out + ", amount=" + amount + ", in_date=" + in_date
-				+ ", content=" + content + ", payment=" + payment + ", monthly=" + monthly + "]";
+				+ ", content=" + content + ", payment=" + payment + ", monthly=" + monthly + ", coment=" + coment
+				+ "]";
 	}
 	
 	
