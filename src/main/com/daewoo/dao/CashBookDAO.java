@@ -23,7 +23,7 @@ public class CashBookDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from cashbook where code = ?";
+		String sql = "select in_out, amount, TO_CHAR(in_date, 'YYYY-MM-DD') as \"in_date\", content, payment, monthly, coment from cashbook where code = ?";
 		ArrayList<CashBookDTO> al = new ArrayList<CashBookDTO>();
 		try {
 			conn = DBManager.getConnection();
@@ -41,7 +41,6 @@ public class CashBookDAO {
 			    cdto.setPayment(rs.getString("payment"));
 			    cdto.setMonthly(rs.getString("monthly"));
 			    cdto.setComent(rs.getString("coment"));
-			    System.out.println(rs.getString("payment"));
 			    al.add(cdto);				
 			}
 		} catch (Exception e) {

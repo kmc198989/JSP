@@ -1,6 +1,7 @@
 package main.com.daewoo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import main.com.daewoo.dao.CashBookDAO;
 import main.com.daewoo.dao.MemberDAO;
+import main.com.daewoo.dto.CashBookDTO;
 import main.com.daewoo.dto.MemberDTO;
 
 /**
@@ -43,14 +46,19 @@ public class SigndoServlet extends HttpServlet {
          String id = request.getParameter("id");
          String pass = request.getParameter("pass");
          
-         MemberDAO memberDAO = new MemberDAO();
+         MemberDAO memberDAO = MemberDAO.getInstance();
          boolean isSuccess = memberDAO.login(id, pass);         
          
          if (isSuccess) {
         	 MemberDTO mdto = memberDAO.loadMember(id);
+        	 CashBookDAO cdao = CashBookDAO.getInstance();
+        	 CashBookDTO cdto = new CashBookDTO();
+        	 ArrayList<CashBookDTO> al = new ArrayList<CashBookDTO>();
+        	 al = cdao.searchAllList(mdto.getCode());
         	 HttpSession session = request.getSession();
              session.setAttribute("success", "로그인 성공!");
              session.setAttribute("loginUser", mdto); 
+             session.setAttribute("al", al);
              RequestDispatcher rd = request.getRequestDispatcher("main_index.jsp");
              rd.forward(request, response);
          } else {

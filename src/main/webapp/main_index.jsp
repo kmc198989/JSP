@@ -101,8 +101,37 @@ if (message != null) { %>
 							<td>
 						</tr>
 					</table>
+					
+					<div id="payment" align="center">
+
 				</form>
 		</div>
 	</div>
+	
+<div>
+<table id="payment1">
+	<caption><h2>가계부 내역</h2></caption>	
+    <thead>
+        <tr>
+            <th>날짜</th>
+            <th>수입/지출</th>
+            <th>금액</th>
+            <th>내용</th>
+            <th>메모</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="payment2" items="${al}">
+            <tr class="record">
+                <td>${payment2.in_date}</td>
+                <td>${payment2.in_out}</td>
+                <td>${payment2.amount}</td>
+                <td>${payment2.content}</td>
+                <td>${payment2.coment}</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+</div>
 </body>
 </html>

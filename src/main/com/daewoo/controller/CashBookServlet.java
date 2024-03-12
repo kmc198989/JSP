@@ -18,13 +18,13 @@ import util.DBManager;
  * Servlet implementation class cashBookServlet
  */
 @WebServlet("/cashbook.do")
-public class cashBookServlet extends HttpServlet {
+public class CashBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cashBookServlet() {
+    public CashBookServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
