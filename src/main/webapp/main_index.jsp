@@ -1,3 +1,4 @@
+<%@page import="main.com.daewoo.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -9,6 +10,22 @@
 <title>Insert title here</title>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<%
+    // 세션에서 loginUser 객체 가져오기
+    MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
+
+    // loginUser에서 code 값 추출 (여기서는 loginUser가 code 값을 직접 가지고 있다고 가정)
+    // 실제 사용 시에는 loginUser의 클래스 타입에 맞게 캐스팅하고, 적절한 getter 메서드를 호출해야 합니다.
+    String code = ""; // loginUser 객체 구조에 따라 적절한 추출 방법 사용
+    if (loginUser != null) {
+         // 예시로, loginUser가 MyDTO 타입이라고 가정하고, getCode() 메서드로 code 값을 가져옵니다.
+         code = Integer.toString(loginUser.getCode());
+    }
+%>
+<script>
+    // JSP에서 JavaScript 변수로 code 값을 전달
+    var userCode = "<%=code%>"; // loginUser 객체로부터 얻은 code 값을 할당
+</script>
 <script type="text/javascript" src="script/calendar.js"></script>
 <script type="text/javascript" src="script/submitcheck.js"></script>
 <script>
@@ -21,6 +38,7 @@ if (message != null) { %>
     alert("<%= success %>");
 <% } %>
 </script> 
+
 <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
@@ -31,19 +49,8 @@ if (message != null) { %>
 			<h2>커뮤니티</h2>
 			<form action="comu_info"></form>
 		</div>
-		<div class="login-container">
-			<h2>로그인</h2>
-			<form class="login-form" action="sign.do" method="post">
-				<input type="text" class="form-control" name="username" placeholder="아이디" required>
-				<input type="password" class="form-control" name="password" placeholder="비밀번호" required>
-				<button type="submit" class="btn btn-login">로그인</button>
-			</form>
-			<div class="signup-link">
-	            <button onclick="location.href='mainjoin.do'">회원가입</button> 
-	            <button onclick="location.href='mypage.jsp'">마이페이지</button>  
-	            <button onclick="location.href='#'">관리자</button>
-			</div>
-		</div>
+		<%@ include file="loginForm.jsp" %>
+		
 	</div>
 	<div class='main2'>
 		<div id='calendar'></div>

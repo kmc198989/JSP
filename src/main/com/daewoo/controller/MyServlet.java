@@ -38,8 +38,11 @@ public class MyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CashBookDAO cdao = CashBookDAO.getInstance();
 		ArrayList<MyDTO> list = new ArrayList<MyDTO>();
-		int code = 1;
-				// Integer.parseInt(request.getParameter("code"));
+		HttpSession session = request.getSession();
+		String codeParam = request.getParameter("code");
+		System.out.println("Received code: " + codeParam);
+		int code = Integer.parseInt(codeParam);
+		
 		list = cdao.searchJsonList(code);
 		Gson gson = new Gson();
         response.setContentType("application/json");
