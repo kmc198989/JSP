@@ -30,18 +30,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+        
     });
 
     calendar.render();
     
         // 결제 내역을 숨기거나 나타내는 함수
     function toggleCashbookVisibility() {
+        var payment1 = document.getElementById("payment1");
         var cashbook = document.getElementById("cashbook");
-        if (cashbook.style.display === "none") {
-            cashbook.style.display = "block"; // 나타내기
-        } else {
-            cashbook.style.display = "none"; // 숨기기
-        }
+       
+        if (payment1.style.display !== "none") {
+        payment1.style.display = "none"; // payment1 숨기기
+        cashbook.style.display = "block"; // cashbook 보이기
+    } else {
+        payment1.style.display = "block"; // payment1 보이기
+        cashbook.style.display = "none"; // cashbook 숨기기
+    }
+        
     }
 
 });

@@ -34,8 +34,7 @@
 		<div class="login-container">
 			<c:choose>
 				<c:when test="${not empty loginUser.id}">
-					<h1>${loginUser.name}님<small>반갑습니다.</small>
-					</h1>
+					<h1>${loginUser.name}님<small> 반갑습니다.</small></h1>
 				</c:when>
 				<c:otherwise>
 					<h1>${success}</h1>

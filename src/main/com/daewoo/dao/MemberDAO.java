@@ -162,4 +162,31 @@ public class MemberDAO {
 	        DBManager.close(conn, pstmt);
 	    }
 	}
+	
+    public boolean updateUserInfo(MemberDTO updatedUserInfo) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        boolean isSuccess = false;
+
+        try {
+            conn = DBManager.getConnection();
+            String sql = "UPDATE member SET name = ?, phone = ?, pass = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, updatedUserInfo.getName());
+            pstmt.setString(2, updatedUserInfo.getPhone());
+            pstmt.setString(3, updatedUserInfo.getPass());
+            pstmt.setString(4, updatedUserInfo.getId());
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                isSuccess = true; // 개인 정보 업데이트가 성공한 경우에만 isSuccess를 true로 설정
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.close(conn, pstmt);
+        }
+
+        return isSuccess;
+    }
 }

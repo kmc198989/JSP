@@ -43,11 +43,15 @@ if (message != null) { %>
 </head>
 
 <body>
-	<div class='header'>핑크피그</div>
+	<div class='header'>
+	<img src="img/header.png">
+	</div>
 	<div class='main1'>
 		<div id='comu_form'>
-			<h2>커뮤니티</h2>
-			<form action="comu_info"></form>
+			<form action="comu_info">
+			<%@ include file="comu/comuList.jsp" %>
+			
+			</form>
 		</div>
 		<%@ include file="loginForm.jsp" %>
 		
@@ -108,10 +112,9 @@ if (message != null) { %>
 		</div>
 	</div>
 	
-<div>
-<table id="payment1">
-	<caption><h2>가계부 내역</h2></caption>	
-    <thead>
+<div id="payment1">
+<table id="payment">
+   <h2>가계부 내역</h2>
         <tr>
             <th>날짜</th>
             <th>수입/지출</th>
@@ -119,8 +122,6 @@ if (message != null) { %>
             <th>내용</th>
             <th>메모</th>
         </tr>
-    </thead>
-    <tbody>
         <c:forEach var="payment2" items="${al}">
             <tr class="record">
                 <td>${payment2.in_date}</td>
@@ -130,7 +131,7 @@ if (message != null) { %>
                 <td>${payment2.coment}</td>
             </tr>
         </c:forEach>
-    </tbody>
+       
 </table>
 </div>
 </body>

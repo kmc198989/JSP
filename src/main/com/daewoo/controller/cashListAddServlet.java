@@ -1,6 +1,7 @@
 package main.com.daewoo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,9 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import main.com.daewoo.dao.CashBookDAO;
 import main.com.daewoo.dto.CashBookDTO;
+import main.com.daewoo.dto.MemberDTO;
+import main.com.daewoo.dto.MyDTO;
 
 /**
  * Servlet implementation class cashListAddServlet
@@ -40,7 +44,13 @@ public class cashListAddServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		CashBookDTO cdto = new CashBookDTO();
-		int code = Integer.parseInt(request.getParameter("code"));
+		ArrayList<MyDTO> list = new ArrayList<MyDTO>();
+
+		HttpSession session = request.getSession();
+	    MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
+	    
+		System.out.println("Received code: " + loginUser.getCode());
+		int code = loginUser.getCode();
 		String in_out = request.getParameter("in_out");
 		String in_date = request.getParameter("in_date");
 		int amount = Integer.parseInt(request.getParameter("amount"));
@@ -58,6 +68,9 @@ public class cashListAddServlet extends HttpServlet {
 		
 		if (result == 1) {
 			request.setAttribute("message", "등록되었습니다.");
+			ArrayList<CashBookDTO> al = new ArrayList<CashBookDTO>();
+			al = cdao.searchAllList(code);
+			request.getSession().setAttribute("al", al);
 		} else {
 			request.setAttribute("message", "Error");
 		}

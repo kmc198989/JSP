@@ -23,7 +23,7 @@ public class CashBookDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select in_out, amount, TO_CHAR(in_date, 'YYYY-MM-DD') as \"in_date\", content, payment, monthly, coment from cashbook where code = ?";
+		String sql = "select in_out, amount, TO_CHAR(in_date, 'YYYY-MM-DD') as \"in_date\", content, payment, monthly, coment from cashbook where code = ? ORDER BY in_date DESC";
 		ArrayList<CashBookDTO> al = new ArrayList<CashBookDTO>();
 		try {
 			conn = DBManager.getConnection();

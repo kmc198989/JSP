@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import main.com.daewoo.dao.CashBookDAO;
+import main.com.daewoo.dto.MemberDTO;
 import main.com.daewoo.dto.MyDTO;
 
 import javax.servlet.*;
@@ -38,10 +39,12 @@ public class MyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CashBookDAO cdao = CashBookDAO.getInstance();
 		ArrayList<MyDTO> list = new ArrayList<MyDTO>();
+
 		HttpSession session = request.getSession();
-		String codeParam = request.getParameter("code");
-		System.out.println("Received code: " + codeParam);
-		int code = Integer.parseInt(codeParam);
+	    MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
+	    
+		System.out.println("Received code: " + loginUser.getCode());
+		int code = loginUser.getCode();
 		
 		list = cdao.searchJsonList(code);
 		Gson gson = new Gson();
