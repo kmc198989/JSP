@@ -56,6 +56,7 @@ public class cashListAddServlet extends HttpServlet {
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		String content = request.getParameter("content");
 		String payment = request.getParameter("payment");
+		String coment = request.getParameter("coment");
 		CashBookDAO cdao = CashBookDAO.getInstance();
 		cdto.setCode(code);
 		cdto.setIn_out(in_out);
@@ -63,6 +64,7 @@ public class cashListAddServlet extends HttpServlet {
 		cdto.setAmount(amount);
 		cdto.setContent(content);
 		cdto.setPayment(payment);
+		cdto.setComent(coment);
 		int result = 0;
 		result = cdao.ListAdd(cdto);
 		

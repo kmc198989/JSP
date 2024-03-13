@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import main.com.daewoo.controller.*;
 import main.com.daewoo.dao.ComuDAO;
@@ -42,15 +43,15 @@ public class comuListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ComuDAO cdao = ComuDAO.getInstance();
 		List<ComuVO> comuList = cdao.selectAllComu();
-		request.setAttribute("comulist", comuList);
+		HttpSession session = request.getSession();
+
+		session.setAttribute("comulist", comuList);
 		
 		// MemberDAO를 사용하여 memberList 조회
 	      MemberDAO memberDAO = MemberDAO.getInstance();
-	      List<MemberDTO> memberList = memberDAO.selectAllMembers();
-	      request.setAttribute("memberList", memberList);
 
 		
-		RequestDispatcher rd = request.getRequestDispatcher("comu/comuList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("main_index.jsp");
 		rd.forward(request, response);
 		
 	}

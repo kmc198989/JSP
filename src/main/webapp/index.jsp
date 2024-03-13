@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect("main_index.jsp"); %>
+<%response.sendRedirect("comuList.do"); %>
 </body>
 </html>

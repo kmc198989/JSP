@@ -9,7 +9,14 @@ public class ComuVO {
 	private String c_comment;
 	private Integer c_comment_num;
 	private String c_comment_date;
+	private String userid;
 	
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public Integer getCode() {
 		return code;
 	}
@@ -62,7 +69,7 @@ public class ComuVO {
 	public String toString() {
 		return "ComuVO [code=" + code + ", c_title=" + c_title + ", c_post=" + c_post + ", c_post_num=" + c_post_num
 				+ ", c_post_date=" + c_post_date + ", c_comment=" + c_comment + ", c_comment_num=" + c_comment_num
-				+ ", c_comment_date=" + c_comment_date + "]";
+				+ ", c_comment_date=" + c_comment_date + ", userid=" + userid + "]";
 	}
 	
 	

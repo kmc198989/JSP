@@ -31,7 +31,7 @@
 			<c:forEach var="comu" items="${comulist}" varStatus="status">
 				<tr class="record">
 					<td align="center" >${comu.c_post_num}</td>
-					<td align="center">${member.id}</td>
+					<td align="center">${comu.userid}</td>
 					<%--List.get(status.index) --%>
 					<td class="title-row" onclick="toggleContent('content_${comu.c_post_num}', this)">
 					<a href="commentWrite.do">

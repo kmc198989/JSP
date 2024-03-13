@@ -49,8 +49,7 @@ if (message != null) { %>
 	<div class='main1'>
 		<div id='comu_form'>
 			<form action="comu_info">
-			<%@ include file="comu/comuList.jsp" %>
-			
+			<%@ include file="comu/comuList.jsp" %>			
 			</form>
 		</div>
 		<%@ include file="loginForm.jsp" %>
@@ -60,55 +59,57 @@ if (message != null) { %>
 		<div id='calendar'></div>
 		<div id='cashbook'>
 			<h2>가계부 입력 란<h2>
-				<form method="post" action="cashListAdd.do" name="frm">
-					<table border="2" height=600 width=600 bordercolor="pink" 
-					cellspacing="2" bordercolor="pink">
-						<input type="hidden" name="code" value="1">
-						<tr>
-							<td>입력 일자</td>
-							<td><input type="date" name="in_date"
-								" style="width: 300px; height: 20px; font-size: 16px;"></td>
-						</tr>
+               <form method="post" action="cashListAdd.do" name="frm">
+                  <table border="2" height=600 width=600 cellspacing="2"
+                     bordercolor="#ffb0c0">
+                     <input type="hidden" name="code" value="1">
+                     <tr>
+                        <td>입력 일자</td>
+                        <td><input type="date" name="in_date"
+                           style="width: calc(100% - 20px); padding: 5px; font-size: 16px; border: 1px solid #ffb0c0; border-radius: 5px;"></td>
+                     </tr>
 
-						<tr>
-							<td>수입/지출</td>
-							<td><input type="radio" name="in_out" value="수입" checked>수입
-								<input type="radio" name="in_out" value="지출">지출</td>
-						</tr>
+                     <tr>
+                        <td>수입/지출</td>
+                        <td><input type="radio" name="in_out" value="수입" checked>수입
+                           <input type="radio" name="in_out" value="지출">지출</td>
+                     </tr>
 
-						<tr>
-							<td>금 액</td>
-							<td><input type="text" name="amount"
-								style="width: 300px; height: 20px; font-size: 16px;"> <br>(*숫자로만
-								입력해 주세요*)</td>
+                     <tr>
+                        <td>금 액</td>
+                        <td><input type="text" name="amount"
+                           placeholder="숫자로만 입력해 주세요"
+                           style="width: calc(100% - 20px); padding: 5px; font-size: 16px; border: 1px solid #ffb0c0; border-radius: 5px;">
+                        </td>
 
-						</tr>
+                     </tr>
 
-						<tr>
-							<td>결제수단</td>
-							<td><input type="radio" name="payment" value="카드" checked>카드
-								<input type="radio" name="payment" value="현금">현금 <input
-								type="radio" name="payment" value="계좌이체">계좌이체</td>
-						</tr>
+                     <tr>
+                        <td>결제수단</td>
+                        <td><input type="radio" name="payment" value="카드"  style="margin-right: 5px;" checked>카드
+                           <input type="radio" name="payment" value="현금" style="margin-right: 5px;">현금 <input
+                           type="radio" name="payment" value="계좌이체" style="margin-right: 5px;">계좌이체</td>
+                     </tr>
 
+                     <tr>
+                        <td>내 용</td>
+                        <td><input type="text" name="content" style="width: calc(100% - 20px); padding: 5px; font-size: 16px; border: 1px solid #ffb0c0; border-radius: 5px;"></td>
+                     </tr>
+                     <tr>
+                        <td>댓글</td>
+                        <td><input type="text" name="coment" style="width: calc(100% - 20px); padding: 5px; font-size: 16px; border: 1px solid #ffb0c0; border-radius: 5px;"></td>
+                     </tr>
 
+                     <tr>
+                        <td colspan="2" align="center"><input type="submit"
+                           value="등록" onclick="return submitCheck()"
+                           style="padding: 10px 20px; background-color: #ffb0c0; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                           <input type="reset" value="취소"
+                           style="padding: 10px 20px; background-color: #ffb0c0; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;"></td>
+                     </tr>
+                  </table>
 
-						<tr>
-							<td>내 용</td>
-							<td><input type="text" name="content""></td>
-						</tr>
-
-						<tr>
-							<td colspan="2">
-							<input type="submit" value="등록" onclick="return submitCheck()">
-							<input type="reset" value="취소">
-							<td>
-						</tr>
-					</table>
-					
-					<div id="payment" align="center">
-
-				</form>
+               </form>
 		</div>
 	</div>
 	

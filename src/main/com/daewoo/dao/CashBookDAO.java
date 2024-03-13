@@ -69,11 +69,11 @@ public class CashBookDAO {
 				if (rs.getString("in_out").equals("수입")) {
 					mdto.setTitle(rs.getString("in_out") + " +" + rs.getString("title"));
 					mdto.setStart(rs.getString("start"));
-					mdto.setColor("#80CEE1");
+					mdto.setColor("#ffb0c0");
 				} else {
 					mdto.setTitle(rs.getString("in_out") + " -" + rs.getString("title"));
 					mdto.setStart(rs.getString("start"));
-					mdto.setColor("#FF968A");
+					mdto.setColor("#80cee1");
 				}
 			    al.add(mdto);
 			}
@@ -89,7 +89,7 @@ public class CashBookDAO {
 	public int ListAdd(CashBookDTO cdto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into cashbook name(code, in_out, in_date, amount, content, payment) values(?,?,?,?,?,?)";
+		String sql = "insert into cashbook name(code, in_out, in_date, amount, content, payment, coment) values(?,?,?,?,?,?,?)";
 		int result = -1;
 
 		try {
@@ -101,6 +101,7 @@ public class CashBookDAO {
 			pstmt.setInt(4, cdto.getAmount());
 			pstmt.setString(5, cdto.getContent());
 			pstmt.setString(6, cdto.getPayment());
+			pstmt.setString(7, cdto.getComent());
 			result = pstmt.executeUpdate();			
 		} catch (Exception e) {
 			e.printStackTrace();

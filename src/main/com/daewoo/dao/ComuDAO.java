@@ -34,7 +34,7 @@ public class ComuDAO {
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					ComuVO cvo = new ComuVO();
-					cvo.setCode(rs.getInt("code"));
+					cvo.setUserid(rs.getString("userid"));
 					cvo.setC_title(rs.getString("c_title"));
 					cvo.setC_post(rs.getString("c_post"));
 					cvo.setC_post_num(rs.getInt("c_post_num"));
@@ -55,7 +55,7 @@ public class ComuDAO {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 
-			String sql = "insert into comu(c_title, c_post, c_post_date, code) values(?,?,?,?)";
+			String sql = "insert into comu(c_title, c_post, c_post_date, code, userid) values(?,?,?,?,?)";
 			try {
 				conn = DBManager.getConnection();
 				pstmt = conn.prepareStatement(sql);
@@ -64,6 +64,7 @@ public class ComuDAO {
 				pstmt.setString(2, cvo.getC_post());
 				pstmt.setString(3, cvo.getC_post_date());
 				pstmt.setInt(4, cvo.getCode());
+				pstmt.setString(5, cvo.getUserid());
 				pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
