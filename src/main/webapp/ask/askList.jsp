@@ -10,15 +10,12 @@
 <link rel="stylesheet" type="text/css" href="css/manager.css">
 <script type="text/javascript" src="script/manager.js"></script>
 <style>
-.container {
+.list-container, .member-list-container {
+  width: 100%; /* 컨테이너의 너비를 각각 48%로 설정하여 좌우로 배치 */
+  max-height: 500px; /* 최대 높이 설정 */
+  overflow-y: auto; /* 내용이 넘칠 경우 세로 스크롤 생성 */  
   display: flex;
   justify-content: space-between;
-}
-
-.list-container, .member-list-container {
-  width: 48%; /* 컨테이너의 너비를 각각 48%로 설정하여 좌우로 배치 */
-  max-height: 500px; /* 최대 높이 설정 */
-  overflow-y: auto; /* 내용이 넘칠 경우 세로 스크롤 생성 */
 }
 /* 초기에는 내용이 숨겨져 있도록 설정 */
 .full-content {
@@ -44,10 +41,10 @@
 <body>
     <div id="wrap" style="text-align: center;">
 	    <img src="upload/mini.png" alt="header">
-        <div class="container">
+	    <h1 style="text-align: center">문의 페이지</h1>        
+	    
         <div class="list-container">
         <table class="list">
-            <h1 style="text-align: center">문의 페이지</h1>        
             <tr>
                 <th>No.</th>
                 <th>아이디</th>
@@ -102,7 +99,6 @@
         </div>
         <div class="member-list-container">
         <%@ include file="/member/memberList.jsp" %>			
-        </div>
         </div>
     </div>
 <script>
