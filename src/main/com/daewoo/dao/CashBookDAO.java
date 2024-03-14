@@ -109,10 +109,5 @@ public class CashBookDAO {
 			DBManager.close(conn, pstmt);
 		}
 		return result;
-	}
-	
-	
-	
-	
-	
+	}	
 }

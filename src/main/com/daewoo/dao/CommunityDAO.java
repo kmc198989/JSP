@@ -19,6 +19,7 @@ public class CommunityDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        System.out.println("getAllPosts" + code);
         try {
             conn = DBManager.getConnection();
             String query = "SELECT * FROM comu where code = ?";

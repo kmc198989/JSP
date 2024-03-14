@@ -11,7 +11,7 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #f0f0f0; 
     margin: 0;
     padding: 0;
   }
@@ -19,19 +19,19 @@
   .container {
     max-width: 800px;
     margin: 80px auto;
-    padding: 20px;
+    padding: 50px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 20px;
     position: relative;
     padding-bottom: 80px; /* 수정된 부분 */
   }
 
-  h1 {
+  h2 {
     text-align: center;
-    color: #333;
+    color:  #333;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* 텍스트 가운데 정렬 */
     align-items: center;
     margin-bottom: 20px;
   }
@@ -52,27 +52,28 @@
     cursor: pointer;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
-    background-color: #4CAF50;
+    background-color: #ffb0c0; 
     color: #fff;
   }
 
   .category-btn:hover {
-    background-color: #45a049;
+    background-color: #ff4081; /* 밝은 핑크색 계열 */
   }
 
   .btn-password-check {
-    background-color: #008CBA;
+    background-color:  #ff4081; /* 밝은 진한 핑크색 */
     color: white;
   }
 
   .btn-password-check:hover {
-    background-color: #0073e6;
+    background-color:  #ff4081; 
   }
 
   table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+  
   }
 
   th, td {
@@ -82,7 +83,7 @@
   }
 
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #ffb0c0; /* 연한 핑크색 계열 */
   } 
 
   th.date-column {
@@ -101,6 +102,7 @@
     right: auto;
     margin-top: 20px; /* 추가된 부분입니다. */
     float: right; /* 추가된 부분입니다. */
+    
   }
 </style>
 
@@ -108,13 +110,13 @@
 <body>
 
 <div class="container">
-  <h1> 
+  
     <form action="modifyUserInfo.do" method="get">
-      마이페이지
+     <h2> 마이페이지 </h2>
       <button type="submit" class="btn btn-password-check">내 정보 수정</button>
       <input type="hidden" name="action">
     </form>  
-  </h1>
+ 
   
   <div class="category-buttons" style="text-align: center;">
     <button class="category-btn" onclick="showCategory('post')">게시글</button>
@@ -135,8 +137,8 @@
       <!-- 여기에 서버에서 받아온 게시글 데이터를 넣어주면 됩니다. -->
       <%
         CommunityDAO postDAO = new CommunityDAO();      
-      	MemberDTO mdto = (MemberDTO) session.getAttribute("loginUser");      	
-	    int code = mdto.getCode();
+         MemberDTO mdto = (MemberDTO) session.getAttribute("loginUser");         
+       int code = mdto.getCode();
         List<CommunityDTO> posta = postDAO.getAllPosts(code);
         for (CommunityDTO post : posta) {
       %>

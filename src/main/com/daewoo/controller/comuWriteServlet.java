@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import main.com.daewoo.dao.*;
 import main.com.daewoo.dto.*;
@@ -65,7 +66,10 @@ public class comuWriteServlet extends HttpServlet {
 	            encType,
 	            new DefaultFileRenamePolicy()
 	            );
-	      int code = 1;
+	      HttpSession session = request.getSession();
+	      MemberDTO mdto = (MemberDTO) session.getAttribute("loginUser");
+	      int code = mdto.getCode();
+	      String userid = mdto.getId();
 	      String c_title = multi.getParameter("c_title");
 	      String c_post = multi.getParameter("c_post");
 	      String c_post_date = multi.getParameter("c_post_date");
@@ -76,11 +80,10 @@ public class comuWriteServlet extends HttpServlet {
 	      cvo.setC_post(c_post);
 	      cvo.setC_post_date(c_post_date);
 	      cvo.setCode(code);
-	     
+	      cvo.setUserid(userid);	     
 	      
 	      ComuDAO cdao = ComuDAO.getInstance();
-	      cdao.insertComu(cvo);
-		 
+	      cdao.insertComu(cvo);		 
 	      
 	      response.sendRedirect("comuList.do");
 	      
