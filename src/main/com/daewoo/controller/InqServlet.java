@@ -20,13 +20,13 @@ import main.com.daewoo.dto.MemberDTO;
  * Servlet implementation class inqServlet
  */
 @WebServlet("/inquiry.do")
-public class inqServlet extends HttpServlet {
+public class InqServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public inqServlet() {
+    public InqServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -97,21 +97,16 @@ public class AskDAO {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 
-	    String sql = "insert into ask (a_title, a_post, a_post_date, a_post_num, a_comment, a_comment_date, a_comment_num, a_check) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	    String sql = "update ask set a_comment = ?, a_check = ?, a_comment_date = ? where a_post_num = ?";
 
 	    try {
 	        conn = DBManager.getConnection();
-	        pstmt = conn.prepareStatement(sql);
-
-	        pstmt.setString(1, avo.getA_title());
-	        pstmt.setString(2, avo.getA_post());
-	        pstmt.setDate(3, new java.sql.Date(avo.getA_post_date().getTime()));
+	        pstmt = conn.prepareStatement(sql);	        
+            String now = LocalDate.now().toString();
+	        pstmt.setString(1, avo.getA_comment());
+	        pstmt.setString(2, "o");
+	        pstmt.setString(3, now);
 	        pstmt.setInt(4, avo.getA_post_num());
-	        pstmt.setString(5, avo.getA_comment());
-	        pstmt.setDate(6, new java.sql.Date(avo.getA_comment_date().getTime()));
-	        pstmt.setInt(7, avo.getA_comment_num());
-	        pstmt.setString(8, avo.getA_check());
-
 	        pstmt.executeUpdate();
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -156,15 +151,16 @@ public class AskDAO {
 	    return commentList;
 	}
 	
-    public List<AskVO> getAllPosts() {
+    public List<AskVO> getAllPosts(int code) {
         List<AskVO> posts = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = DBManager.getConnection();
-            String query = "SELECT A_POST, A_POST_NUM, A_POST_DATE,A_Title FROM ask";
+            String query = "SELECT A_POST, A_POST_NUM, A_POST_DATE,A_Title FROM ask where code = ? order by a_post_num desc";
             stmt = conn.prepareStatement(query);
+            stmt.setInt(1, code);
             rs = stmt.executeQuery();
             while (rs.next()) {
             	AskVO post = new AskVO();

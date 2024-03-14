@@ -27,7 +27,8 @@
 
 				<tr>
 					<th>날짜</th>
-					<td><input type="date" name="c_post_date" size="80"></td>
+					<td><input type="date" name="c_post_date" class="date-field"
+						readonly style="border: none;" size="80"></td>
 				</tr>
 				
 			</table>

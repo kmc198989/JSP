@@ -190,7 +190,7 @@
       <!-- 여기에 서버에서 받아온 문의 데이터를 넣어주면 됩니다. -->
       <%
         AskDAO dao = AskDAO.getInstance();
-        List<AskVO> posts = dao.getAllPosts();
+        List<AskVO> posts = dao.getAllPosts(code);
         for (AskVO post : posts) {
       %>
       <tr>

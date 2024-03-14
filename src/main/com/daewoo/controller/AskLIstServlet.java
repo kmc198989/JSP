@@ -21,13 +21,13 @@ import main.com.daewoo.dto.MemberDTO;
  * Servlet implementation class askLIstServlet
  */
 @WebServlet("/askList.do")
-public class askLIstServlet extends HttpServlet {
+public class AskLIstServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public askLIstServlet() {
+	public AskLIstServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -34,11 +34,12 @@ public class ComuDAO {
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					ComuVO cvo = new ComuVO();
-					cvo.setUserid(rs.getString("userid"));
+					cvo.setCode(rs.getInt("code"));
 					cvo.setC_title(rs.getString("c_title"));
 					cvo.setC_post(rs.getString("c_post"));
 					cvo.setC_post_num(rs.getInt("c_post_num"));
-					cvo.setC_post_date(rs.getString("c_post_date"));
+					cvo.setC_post_date(rs.getDate("c_post_date"));
+					cvo.setUserid(rs.getString("userid"));
 					
 					list.add(cvo);
 				}
@@ -62,7 +63,7 @@ public class ComuDAO {
 				//동적바인딩 값 지정
 				pstmt.setString(1, cvo.getC_title());
 				pstmt.setString(2, cvo.getC_post());
-				pstmt.setString(3, cvo.getC_post_date());
+				pstmt.setDate(3, cvo.getC_post_date());
 				pstmt.setInt(4, cvo.getCode());
 				pstmt.setString(5, cvo.getUserid());
 				pstmt.executeUpdate();
@@ -74,7 +75,7 @@ public class ComuDAO {
 		}
 		
 		//게시글 수정 메소드
-		public ComuVO selectComuByCode(String code) {
+		public ComuVO selectComuByCode(String c_post_num) {
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
@@ -84,15 +85,16 @@ public class ComuDAO {
 				conn = DBManager.getConnection();
 				pstmt = conn.prepareStatement(sql);
 				//System.out.println(code);
-				pstmt.setString(1, code);
+				pstmt.setString(1, c_post_num);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					cvo = new ComuVO();
 					cvo.setC_title(rs.getString("c_title"));
 					cvo.setC_post(rs.getString("c_post"));
 					cvo.setC_post_num(rs.getInt("c_post_num"));
-					cvo.setC_post_date(rs.getString("c_post_date"));
-					
+					cvo.setC_post_date(rs.getDate("c_post_date"));
+					cvo.setUserid(rs.getString("userid"));
+
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -112,7 +114,7 @@ public class ComuDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, cvo.getC_title());
 				pstmt.setString(2, cvo.getC_post());
-				pstmt.setString(3, cvo.getC_post_date());
+				pstmt.setDate(3, cvo.getC_post_date());
 				pstmt.setInt(4, cvo.getC_post_num());
 				
 				pstmt.executeUpdate();
@@ -124,14 +126,14 @@ public class ComuDAO {
 		}
 		
 		//게시글 삭제 메소드
-		public boolean deleteComu(String code) {
+		public boolean deleteComu(String c_post_num) {
 			String sql = "delete from comu where c_post_num=?";
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {
 				conn = DBManager.getConnection();
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, code);
+				pstmt.setString(1, c_post_num);
 				int rowsAffected = pstmt.executeUpdate();
 				
 				return rowsAffected > 0;// 삭제된 행이 하나 이상이면 성공으로 간주
@@ -141,6 +143,69 @@ public class ComuDAO {
 			}finally {
 				DBManager.close(conn, pstmt);
 			}
+		}
+		
+		// 회원 code를 기반으로 해당 회원이 작성한 게시글 목록을 가져오는 메서드
+		public List<ComuVO> getPostsByCode(int code) {
+		    Connection conn = null;
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+
+		    String sql = "select * from comu where code=? order by c_post_date DESC";
+		    List<ComuVO> postList = new ArrayList<>();
+
+		    try {
+		    	conn = DBManager.getConnection();
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setInt(1, code);
+		        rs = pstmt.executeQuery();
+
+		        while (rs.next()) {
+		            ComuVO cvo = new ComuVO();
+		            cvo.setCode(rs.getInt("code"));
+		            cvo.setC_title(rs.getString("c_title"));
+		            cvo.setC_post(rs.getString("c_post"));
+		            cvo.setC_post_num(rs.getInt("c_post_num"));
+		            cvo.setC_post_date(rs.getDate("c_post_date"));
+		            postList.add(cvo);
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        DBManager.close(conn, pstmt, rs);
+		    }
+		    return postList;
+		}
+
+		//회원 code를 기반으로 해당 회원이 작성한 댓글 목록을 가져오는 메서드
+		public List<ComuVO> getCommentsByCode(int code) {
+		 Connection conn = null;
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+
+		 String sql = "select * from comu where code=? order by c_comment_date DESC";
+		 List<ComuVO> postList = new ArrayList<>();
+
+		 try {
+		 	conn = DBManager.getConnection();
+		     pstmt = conn.prepareStatement(sql);
+		     pstmt.setInt(1, code);
+		     rs = pstmt.executeQuery();
+
+		     while (rs.next()) {
+		         ComuVO cvo = new ComuVO();
+		         cvo.setCode(rs.getInt("code"));
+		         cvo.setC_title(rs.getString("c_title"));
+		         cvo.setC_comment(rs.getString("c_comment"));
+		         cvo.setC_comment_date(rs.getDate("c_comment_date"));
+		         postList.add(cvo);
+		     }
+		 } catch (Exception e) {
+		     e.printStackTrace();
+		 } finally {
+		     DBManager.close(conn, pstmt, rs);
+		 }
+		 return postList;
 		}
 	}
 

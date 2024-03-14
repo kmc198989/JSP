@@ -20,13 +20,13 @@ import main.com.daewoo.dto.MyDTO;
  * Servlet implementation class cashListAddServlet
  */
 @WebServlet("/cashListAdd.do")
-public class cashListAddServlet extends HttpServlet {
+public class CashListAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cashListAddServlet() {
+    public CashListAddServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -40,8 +40,11 @@
 					</td>
 					<td>${comu.c_post_date}</td>
 					<td align="center" width="90px">
-					<input type="submit" value="수정" onclick="location.href='comuUpdate.do?code=${comu.c_post_num}'">
-					<input type="submit" value="삭제" onclick="deleteRow(${comu.c_post_num})"></td>
+					<c:if test="${loginUser.code eq '1' }">
+					<input type="button" value="수정" onclick="location.href='comuUpdate.do?code=${comu.c_post_num}'">
+					<input type="button" value="삭제" onclick="deleteRow(${comu.c_post_num})">
+					</c:if>
+					</td>
 			</c:forEach>
 		</table>
 	</div>

@@ -1,10 +1,8 @@
 package main.com.daewoo.controller;
 
 import java.io.File;
-
 import java.io.IOException;
-
-import java.util.List;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,26 +11,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import main.com.daewoo.controller.*;
-import main.com.daewoo.dao.ComuDAO;
-import main.com.daewoo.dao.MemberDAO;
+import main.com.daewoo.dao.*;
 import main.com.daewoo.dto.*;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import main.com.daewoo.dao.ComuDAO;
+import main.com.daewoo.dto.ComuVO;
+
 /**
- * Servlet implementation class coumListServlet
+ * Servlet implementation class comuUpdateServlet
  */
-@WebServlet("/comuList.do")
-public class comuListServlet extends HttpServlet {
+@WebServlet("/comuUpdate.do")
+public class ComuUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public comuListServlet() {
+    public ComuUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,17 +39,13 @@ public class comuListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String code = request.getParameter("code");
+		//System.out.println(code);
 		ComuDAO cdao = ComuDAO.getInstance();
-		List<ComuVO> comuList = cdao.selectAllComu();
-		HttpSession session = request.getSession();
-
-		session.setAttribute("comulist", comuList);
+		ComuVO cvo = cdao.selectComuByCode(code);
 		
-		// MemberDAO를 사용하여 memberList 조회
-	      MemberDAO memberDAO = MemberDAO.getInstance();
-
-		
-		RequestDispatcher rd = request.getRequestDispatcher("main_index.jsp");
+		request.setAttribute("comu", cvo);
+		RequestDispatcher rd = request.getRequestDispatcher("comu/comuUpdate.jsp");
 		rd.forward(request, response);
 		
 	}
@@ -69,24 +63,20 @@ public class comuListServlet extends HttpServlet {
 	            uploadDir.mkdirs();
 	        }
 	        
+		//System.out.println(path);
 		String encType = "UTF-8";
-		int sizeLimit = 20* 1024 * 1024;
+		int sizeLimit = 20 * 1024 * 1024;
 		
-		MultipartRequest multi = new MultipartRequest(request, 
-				encType, 
-				sizeLimit, 
-				path,
-				new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType, new DefaultFileRenamePolicy());
 		
-		int code = Integer.parseInt(multi.getParameter("code"));
-		String c_title = multi.getFilesystemName("c_title");
+		String c_title = multi.getParameter("c_title");
 		String c_post = multi.getParameter("c_post");
 		int c_post_num = Integer.parseInt(multi.getParameter("c_post_num"));
-		String c_post_date = multi.getParameter("c_post_date");
-		
+		String c_post_date_str = multi.getParameter("c_post_date");
+        Date c_post_date = Date.valueOf(c_post_date_str);
+			
 		
 		ComuVO cvo = new ComuVO();
-		cvo.setCode(code);
 		cvo.setC_title(c_title);
 		cvo.setC_post(c_post);
 		cvo.setC_post_num(c_post_num);
@@ -94,9 +84,10 @@ public class comuListServlet extends HttpServlet {
 		
 		
 		ComuDAO cdao = ComuDAO.getInstance();
-		cdao.insertComu(cvo);
+		cdao.updateComu(cvo);
 		
 		response.sendRedirect("comuList.do");
+	
 	}
 
 }

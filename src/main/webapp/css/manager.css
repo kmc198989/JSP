@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+#wrap {
+    width: 971px;
+    margin: 0 auto;
+    text-align: left; /* 내용은 다시 왼쪽으로 정렬 */
+}
+
+#update {
+	width: 971px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+h1 {
+	color: #ffb0c0;
+}
+
+/* 헤더 스타일 설정 */
+header {
+    text-align: center; /* 이미지와 헤더 내용을 가운데 정렬 */
+    height: 150px;
+}
+
+/* 이미지에 대한 스타일 설정 */
+header img {
+    max-width: 100%; /* 이미지가 부모 요소의 너비를 초과하지 않도록 함 */
+    height: auto; /* 가로 비율을 유지하면서 이미지의 높이 조절 */
+    margin-bottom: 20px; /* 이미지 아래 여백 추가 */
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 12px;
+	line-height: 24px;
+	margin: 0 auto; /* 가운데 정렬을 위해 추가 */
+	text-align:  center;
+}
+
+table td, table th {
+	border: #d3d3d3 solid 1px;
+	padding: 5px;
+}
+
+th {
+	background: #ffb0c0;
+	text-align: center;
+}
+
+/* 번호와 답변 여부의 최대 너비 지정 */
+table td:nth-child(1), table th:nth-child(1),
+table td:nth-child(6), table th:nth-child(6) {
+    max-width: 50px; /* 최대 너비 설정 (번호와 답변 여부가 짧게 보이도록) */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 제목과 내용의 최대 너비 지정 */
+table td:nth-child(3), table th:nth-child(3),
+table td:nth-child(4), table th:nth-child(4) {
+    max-width: 200px; /* 최대 너비 설정 (제목과 내용이 짧게 보이도록) */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #ffb0c0;
+}
+
+.update-link {
+    width: 50px; /* 원하는 너비로 설정 */
+    display: inline-block;
+    text-align: center;
+}
+
+a.update-link {
+    text-decoration: none; /* 밑줄 제거 */
+    color: black; /* 링크 색상 지정 */
+}
+
+a.update-link:hover {
+    text-decoration: none; /* 호버 시에도 밑줄 제거 */
+    color: #ffb0c0; /* 호버 시 링크 색상 변경 */
+}
+
+
+
+
+/* 수정, 삭제 버튼 가운데 정렬 */
+#btnContainer {
+    text-align: center;
+}

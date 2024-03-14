@@ -45,7 +45,7 @@
 			<div class="signup-link">
 				<button onclick="location.href='mypage.jsp'">마이페이지</button>
 				<c:if test="${loginUser.id eq 'admin'}">				
-					<button onclick="location.href='#'">관리자</button>
+					<button onclick="location.href='askList.do'">관리자</button>
 				</c:if>
 			</div>
 		</div>

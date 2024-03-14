@@ -24,13 +24,13 @@ import util.DBManager;
  * Servlet implementation class comuDeleteServlet
  */
 @WebServlet("/comuDelete.do")
-public class comuDeleteServlet extends HttpServlet {
+public class ComuDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public comuDeleteServlet() {
+	public ComuDeleteServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

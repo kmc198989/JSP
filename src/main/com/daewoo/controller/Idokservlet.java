@@ -15,13 +15,13 @@ import main.com.daewoo.dao.JoinDAO;
  * Servlet implementation class idokservlet
  */
 @WebServlet("/idok.do")
-public class idokservlet extends HttpServlet {
+public class Idokservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public idokservlet() {
+    public Idokservlet() {
         super();
         // TODO Auto-generated constructor stub
     }

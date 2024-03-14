@@ -32,15 +32,17 @@ div {
 			</tr>
 
 			<!-- 문의 내용 불러오기 -->
-			<c:forEach var="ask" items="${askList}">
-				<tr>
-					<td>${ask.a_post_num}</td>
-					<td>${memberList.get(status.index).id }</td>
-					<td>${ask.a_title }</td>
-					<td>${ask.a_post }</td>
-					<td>&{ask.a_post_date }</td>
-				</tr>
-			</c:forEach>
+			
+			<tr>			
+				<td>${ask.a_post_num}</td>
+				<td>${ask.userid}</td>
+				<td>${ask.a_title}</td>
+				
+				<td>
+				<textarea rows="10" cols="70">${ask.a_post}</textarea>				
+				</td>
+				<td>${ask.a_post_date}</td>
+			</tr>					
 
 			<!-- 답변 양식 -->
 			<tr>
@@ -48,11 +50,13 @@ div {
 				<td colspan="3">
 					<form action="askComment.do" method="post">
 						<input type="hidden" name="a_post_num" value="${param.a_post_num}">
+						<input type="hidden" name="a_post_date" value="${ask.a_post_date }">
 						<br>
 						<textarea name="a_comment" rows="5" cols="100" placeholder="답변 내용"></textarea>
-						<br> <br> <input type="submit" value="작성"> <input
-							type="reset" value="다시 작성"> <input type="button"
-							value="목록" onclick="location.href='askList.do'">
+						<br> <br> 
+						<input type="submit" value="작성"> 
+						<input type="reset" value="다시 작성"> 
+						<input type="button" value="목록" onclick="location.href='askList.do'">
 					</form>
 				</td>
 				<td>

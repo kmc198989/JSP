@@ -2,6 +2,7 @@ package main.com.daewoo.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -24,13 +25,13 @@ import main.com.daewoo.dto.ComuVO;
  * Servlet implementation class comuWriteServlet
  */
 @WebServlet("/comuWrite.do")
-public class comuWriteServlet extends HttpServlet {
+public class ComuWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public comuWriteServlet() {
+    public ComuWriteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,7 +51,6 @@ public class comuWriteServlet extends HttpServlet {
 		 request.setCharacterEncoding("UTF-8");
 	      ServletContext context = getServletContext();
 	      String path = context.getRealPath("/upload");
-	      System.out.println("11");
 	      File uploadDir = new File(path);
 	        if (!uploadDir.exists()) {
 	            uploadDir.mkdirs();
@@ -72,8 +72,8 @@ public class comuWriteServlet extends HttpServlet {
 	      String userid = mdto.getId();
 	      String c_title = multi.getParameter("c_title");
 	      String c_post = multi.getParameter("c_post");
-	      String c_post_date = multi.getParameter("c_post_date");
-	      
+	      String c_post_date_str = multi.getParameter("c_post_date");
+	      Date c_post_date = Date.valueOf(c_post_date_str);
 	      
 	      ComuVO cvo = new ComuVO();
 	      cvo.setC_title(c_title);
