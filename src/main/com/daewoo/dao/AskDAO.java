@@ -209,14 +209,15 @@ public class AskDAO {
         
         try {
             conn = DBManager.getConnection();
-            String sql = "INSERT INTO ask (A_Title, A_post ,code,userid, a_post_date) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO ask (A_Title, A_post ,code,userid, a_check, a_post_date) VALUES (?,?,?,?,?,?)";
             String now = LocalDate.now().toString();            
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, askDTO.getA_title());
             pstmt.setString(2, askDTO.getA_post());
             pstmt.setInt(3, askDTO.getCode());
             pstmt.setString(4, askDTO.getUserid());
-            pstmt.setString(5, now);
+            pstmt.setString(5, "x");
+            pstmt.setString(6, now);
             
             
             
