@@ -124,9 +124,9 @@
 			<tr>
 				<td colspan="2" align="center">
 				<input type="submit" value="확인" onclick="return joinCheck()"> &nbsp;&nbsp;&nbsp;&nbsp; 
-					<input type="reset" value="취소"></td>
+				<input type="button"  value="취소" onclick="location.href='comuList.do'">
+				</td>
 			</tr>
-
 			<tr>
 				<td colspan="2">${message}</td>
 			</tr>
