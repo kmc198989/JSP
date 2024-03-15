@@ -25,7 +25,9 @@
 			<th width="90px">아이디</th>
 			<th>제목</th>
 			<th width="90px">등록일자</th>
-			<th width="90px" colspan="2">수정 / 삭제</th>
+			<c:if test="${loginUser.code eq '1' }">			
+				<th width="90px" colspan="2">수정 / 삭제</th>
+			</c:if>
 
 
 			<c:forEach var="comu" items="${comulist}" varStatus="status">
@@ -42,13 +44,15 @@
 					</a>
 					</td>
 					<td>${comu.c_post_date}</td>
-					<td align="center" width="90px"><c:if
-							test="${loginUser.code eq '1' }">
+					<c:if test="${loginUser.code eq '1' }">
+					
+					<td align="center" width="90px">
 							<input type="button" value="수정"
 								onclick="location.href='comuUpdate.do?code=${comu.c_post_num}'">
 							<input type="button" value="삭제"
 								onclick="deleteRow(${comu.c_post_num})">
-						</c:if></td>
+					</td>
+					</c:if>					
 			</c:forEach>
 		</table>
 	</div>
