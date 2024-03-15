@@ -131,12 +131,12 @@ if (message != null) { %>
 <tr>
 <td colspan="2">수입 합계<input type="text" value=<c:out value="${incometotal}"/> readonly></td>
 <td colspan="2">지출 합계<input type="text" value=<c:out value="${paytotal}"/> readonly></td>
-<td colspan="2">총합<input type="text" value=
+<td>총합<input type="text" value=
 "<c:if test="${total gt '0'}">
-<c:out value="(+)${total}"/> 
+<c:out value="+${total}"/> 
 </c:if>
 <c:if test="${total lt '0'}">
-<c:out value="(-)${total}"/> 
+<c:out value="${total}"/> 
 </c:if>
 <c:if test="${total eq '0'}">
 0
