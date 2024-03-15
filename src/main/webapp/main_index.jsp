@@ -96,7 +96,7 @@ if (message != null) { %>
                         <td><input type="text" name="content" style="width: calc(100% - 20px); padding: 5px; font-size: 16px; border: 1px solid #ffb0c0; border-radius: 5px;"></td>
                      </tr>
                      <tr>
-                        <td>댓글</td>
+                        <td>메 모</td>
                         <td><input type="text" name="coment" style="width: calc(100% - 20px); padding: 5px; font-size: 16px; border: 1px solid #ffb0c0; border-radius: 5px;"></td>
                      </tr>
 

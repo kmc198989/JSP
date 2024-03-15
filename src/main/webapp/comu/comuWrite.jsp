@@ -13,8 +13,7 @@
 	<div id="wrap" align="center">
 		<h1>글쓰기</h1>
 		<form method="post" enctype="multipart/form-data" name="frm">
-			<table>
-			
+			<table>				
 				<tr>
 					<th>제목</th>
 					<td><input type="text" name="c_title" size="80"></td>
@@ -30,12 +29,11 @@
 					<td><input type="date" name="c_post_date" class="date-field"
 						readonly style="border: none;" size="80"></td>
 				</tr>
-				
+
 			</table>
-			<br> 
-			<input type="submit" value="등록" onclick="return comuCheck()">
-			<input type="reset" value="다시 작성">
-			<input type="button" value="커뮤니티"onclick="location.href='comuList.do'">
+			<br> <input type="submit" value="등록"
+				onclick="return comuCheck()"> <input type="button"
+				value="목록" onclick="location.href='comuList.do'">
 		</form>
 	</div>
 </body>
