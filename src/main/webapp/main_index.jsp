@@ -115,7 +115,35 @@ if (message != null) { %>
 	
 <div id="payment1">
 <table id="payment">
-   <h2>가계부 내역</h2>
+<c:set var = "incometotal" value="0"/>
+<c:set var = "paytotal" value="0"/>
+<c:set var = "total" value="0"/>
+<c:forEach var="al" items="${al}">
+<c:if test="${al.in_out eq '수입' }">
+<c:set var = "incometotal" value="${incometotal+al.amount }"/>
+<c:set var = "total" value="${total+al.amount }"/>
+</c:if>
+<c:if test="${al.in_out eq '지출' }">
+<c:set var = "paytotal" value="${paytotal+al.amount }"/>
+<c:set var = "total" value="${total-al.amount }"/>
+</c:if>
+</c:forEach>
+<tr>
+<td colspan="2">수입 합계<input type="text" value=<c:out value="${incometotal}"/> readonly></td>
+<td colspan="2">지출 합계<input type="text" value=<c:out value="${paytotal}"/> readonly></td>
+<td colspan="2">총합<input type="text" value=
+"<c:if test="${total gt '0'}">
+<c:out value="(+)${total}"/> 
+</c:if>
+<c:if test="${total lt '0'}">
+<c:out value="(-)${total}"/> 
+</c:if>
+<c:if test="${total eq '0'}">
+0
+</c:if>"
+ readonly></td>
+</tr>
+<h2>가계부 내역</h2>
         <tr>
             <th>날짜</th>
             <th>수입/지출</th>
